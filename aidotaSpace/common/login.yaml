@@ -1,4 +1,5 @@
-sit:
-  url: https://iam-sit.immotors.com/login/
-  user: v-qufnz2
-  pwd: Abuplw202510
+# 元素定位
+user: //input[@placeholder='请输入ID']
+pwd: //input[@placeholder='请输入密码']
+but: //button[text()='登录']
+aidota: //div[contains(text(),'智能诊断服务')]

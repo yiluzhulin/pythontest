@@ -1,0 +1,33 @@
+# 元素定位
+# 进入场景组&场景管理界面
+entrance: //div[span[text()='AI诊断管理']]
+sceneCanvas: //div[contains(text(),'场景组&场景管理')]
+
+# 场景查询
+search:
+  sceneGroupName: //div[label[text()='场景组名称']]/div/div/input
+  sceneName: //div[label[text()='场景名称']]/div/div/input
+  groupCreateUser: //div[label[text()='场景组创建人']]/div/div/input
+  createUser: //div[label[text()='场景创建人']]/div/div/input
+  status: //div[label[text()='场景状态']]/div/div
+  status_csz: //li[span[text()='测试中']]
+  status_bjz: //li[span[text()='编辑中']]
+  search_but: //button[span[text()='查询']]
+
+# 添加场景组
+save_sceneGroup:
+  entrance: //button[span[text()='创建场景组']]
+  name: //div[@class='el-form-item is-required']/div/div/input
+  but: //button[span[text()='确 定']]
+
+# 添加场景
+save_scene:
+  entrance: //button[span[text()='创建场景']]
+  sceneGroupName_input: //div[label[text()='场景组名称']]/div/div/div/input
+  sceneGroupName: //ul[@class='el-scrollbar__view el-autocomplete-suggestion__list']/li[1]
+  sceneName: //div[label[text()='场景名称']]/div/div/input
+  vehicleModels_input: //div[label[text()='车型']]/div/div/div/input
+  vehicleModels: //li[span[text()='${vehicleModel}']]
+  imOsVersions_input: //div[label[text()='IMOS版本号']]/div/div/div/input
+  imOsVersions: //li[span[contains(text(),'IMOS')]][1]
+

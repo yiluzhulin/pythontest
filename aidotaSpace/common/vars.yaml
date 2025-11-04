@@ -1,0 +1,10 @@
+# 自动化测试数据前缀标识
+flag: auto
+
+# sit环境参数变量
+sit:
+  # 地址、账号、密码
+  url: https://iam-sit.immotors.com/login/
+  user: v-qufnz2
+  pwd: Abuplw202510
+  vehicleModel: EP33-M0-L7
