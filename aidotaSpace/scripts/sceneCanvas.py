@@ -25,20 +25,20 @@ class SceneCanvas:
         try:
             # 展开AI诊断管理目录
             self.browser.button('xpath', self.fun_flag, "entrance")
-            time.sleep(1)
 
             # 打开场景组&场景管理页面
             self.browser.button('xpath', self.fun_flag, "sceneCanvas")
-            time.sleep(3)
 
             # # 添加场景组
             # self.save_sceneGroup()
 
-            self.save_scene()
+            # self.save_scene()
 
-            # # 场景查询
-            # self.scene_search(["sceneGroupName"])
+            # 场景查询
+            self.scene_search(["sceneGroupName"])
 
+            # 编辑场景
+            self.edit_scene()
 
         except:
             print("元素读取出现异常：", sys.exc_info()[0])
@@ -66,11 +66,8 @@ class SceneCanvas:
                         self.browser.input('xpath', self.fun_flag, "search.createUser", user)
                     case "status":
                         self.browser.button('xpath', self.fun_flag, "search.status")
-                        time.sleep(1)
                         self.browser.button('xpath', self.fun_flag, "search.status_csz")
-                        time.sleep(1)
                         self.browser.button('xpath', self.fun_flag, "search.status_bjz")
-                        time.sleep(1)
 
             # 点击查询按钮
             self.browser.button('xpath', self.fun_flag, "search.search_but")
@@ -88,12 +85,10 @@ class SceneCanvas:
         try:
             # 点击创建场景组
             self.browser.button('xpath', self.fun_flag, "save_sceneGroup.entrance")
-            time.sleep(1)
 
             # 设置场景组名称
-            name = self.test_flag + time.strftime("%Y%m%d%H%M%S")
+            name = self.test_flag + "cjz" + time.strftime("%Y%m%d%H%M%S")
             self.browser.input('xpath', self.fun_flag, "save_sceneGroup.name", name)
-            time.sleep(1)
 
             # 点击确定按钮
             self.browser.button('xpath', self.fun_flag, "save_sceneGroup.but")
@@ -103,7 +98,6 @@ class SceneCanvas:
             print("元素读取出现异常：", sys.exc_info()[0])
             raise
 
-
     def save_scene(self):
         '''
         添加场景
@@ -112,25 +106,68 @@ class SceneCanvas:
         try:
             # 点击创建场景
             self.browser.button('xpath', self.fun_flag, "save_scene.entrance")
-            time.sleep(3)
 
-            #设置场景组
+            # 设置基本信息
+            # 设置场景组
             self.browser.input('xpath', self.fun_flag, "save_scene.sceneGroupName_input", self.test_flag)
-            time.sleep(1)
             self.browser.button('xpath', self.fun_flag, "save_scene.sceneGroupName")
 
-            # # 设置车型
-            # vehicleModel = self.data.get_element("var", self.env + ".vehicleModel")
-            #
-            # # 点击确定按钮
-            # self.browser.button('xpath', self.fun_flag, "save_sceneGroup.but")
+            # 设置场景
+            sceneName = self.test_flag + "cj" + time.strftime("%Y%m%d%H%M%S")
+            self.browser.input('xpath', self.fun_flag, "save_scene.sceneName", sceneName)
+
+            # 设置车型
+            vehicleModels = self.data.get_element("var", self.env + ".vehicleModels")
+            for vehicleModel in vehicleModels:
+                self.browser.input('xpath', self.fun_flag, "save_scene.vehicleModels_input", vehicleModel)
+                self.browser.button('xpath', self.fun_flag, "save_scene.vehicleModels", vehicleModel)
+                self.browser.button('xpath', self.fun_flag, "save_scene.main")
+
+
+            # 设置IMOS版本
+            self.browser.input('xpath', self.fun_flag, "save_scene.imOsVersions_input", "IMOS")
+            self.browser.button('xpath', self.fun_flag, "save_scene.imOsVersions")
+
+            # 设置下线日期
+            self.browser.button('xpath', self.fun_flag, "save_scene.offlindDate")
+            self.browser.button('xpath', self.fun_flag, "save_scene.startDate")
+            time.sleep(1)
+            self.browser.button('xpath', self.fun_flag, "save_scene.endDate")
+
+            # 点击下一步按钮
+            self.browser.button('xpath', self.fun_flag, "save_scene.next_but")
             time.sleep(3)
+
+            # 设置逻辑判断
+            self.edit_scene_canvas()
 
         except:
             print("元素读取出现异常：", sys.exc_info()[0])
             raise
 
+    def edit_scene_canvas(self):
+        '''
+        编辑场景的逻辑画布界面
+        :return:
+        '''
+        # 拖动信号子任务到画布
+        self.browser.drag('xpath', self.fun_flag, "canvas.canlin_node", -200, 100)
+        self.browser.double_click('xpath', self.fun_flag, "canvas.new_canlin_node")
+        time.sleep(5)
+
+    def edit_scene(self):
+        '''
+        编辑场景
+        :return:
+        '''
+        self.browser.button('xpath', self.fun_flag, "edit_scene.edit")
+        self.browser.button('xpath', self.fun_flag, "edit_scene.canvas")
+        self.edit_scene_canvas()
+        time.sleep(5)
+
+
 # # 调试使用
 # if __name__=="__main__":
-#     name = "auto" + time.strftime("%Y%m%d%H%M%S")
+#     name = "//li[span[text()='${var_to_change}']]"
+#     name = name.replace("${var_to_change}","EP33-M0-L7")
 #     print(name)

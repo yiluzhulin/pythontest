@@ -32,7 +32,7 @@ class Login:
             self.browser.input('xpath', self.fun_flag, "user", user)
             self.browser.input('xpath', self.fun_flag, "pwd", pwd)
             self.browser.button('xpath', self.fun_flag, "but")
-            time.sleep(5)
+            time.sleep(6)
 
             # 点击进入智能诊断平台
             self.browser.button('xpath', self.fun_flag, "aidota")
@@ -41,8 +41,7 @@ class Login:
             # 切换到最新窗口的句柄
             self.browser.switch_to_window(-1)
             # 将页面比例缩放到80%
-            self.browser.set_style_zoom("0.8")
-            time.sleep(1)
+            self.browser.set_style_zoom("0.7")
 
         except:
             print("元素读取出现异常：", sys.exc_info()[0])

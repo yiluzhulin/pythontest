@@ -23,11 +23,36 @@ save_sceneGroup:
 # 添加场景
 save_scene:
   entrance: //button[span[text()='创建场景']]
+  # 基本信息配置
   sceneGroupName_input: //div[label[text()='场景组名称']]/div/div/div/input
   sceneGroupName: //ul[@class='el-scrollbar__view el-autocomplete-suggestion__list']/li[1]
   sceneName: //div[label[text()='场景名称']]/div/div/input
   vehicleModels_input: //div[label[text()='车型']]/div/div/div/input
-  vehicleModels: //li[span[text()='${vehicleModel}']]
+  vehicleModels: //li[span[text()='${var_to_change}']][1]
   imOsVersions_input: //div[label[text()='IMOS版本号']]/div/div/div/input
   imOsVersions: //li[span[contains(text(),'IMOS')]][1]
+  offlindDate: //input[@placeholder='开始日期']
+  startDate: //div[span[contains(text(),'16')]]
+  endDate: //div[span[contains(text(),'26')]]
+  next_but: //button[span[text()='下一步']]
+  main: //div[@class='main-form-content']
+# 场景逻辑配置
+canvas:
+  # 信号子任务
+  # 节点功能栏中的信号子任务接口
+  canlin_node: //div[div[span[contains(text(),'信号子任务')] and @class='draggable-node']]
+  # 新增的空白信号子任务节点
+  new_canlin_node: //*[@data-shape='signal']
+
+
+
+  decision_node: //div[span[contains(text(),'判断')] and @class='draggable-node']
+  conclusion_node: //div[span[contains(text(),'小结')] and @class='draggable-node']
+
+# 编辑场景
+edit_scene:
+  edit: //tr[@class='el-table__row'][1]/td[@class='el-table_1_column_11 is-center  el-table__cell']//div/button[span[text()='编辑']]
+  base: //div[contains(text(),'基本信息')]
+  canvas: //div[contains(text(),'场景逻辑')]
+
 
