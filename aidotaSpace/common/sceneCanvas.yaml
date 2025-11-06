@@ -36,13 +36,29 @@ save_scene:
   endDate: //div[span[contains(text(),'26')]]
   next_but: //button[span[text()='下一步']]
   main: //div[@class='main-form-content']
+
 # 场景逻辑配置
 canvas:
   # 信号子任务
-  # 节点功能栏中的信号子任务接口
-  canlin_node: //div[div[span[contains(text(),'信号子任务')] and @class='draggable-node']]
-  # 新增的空白信号子任务节点
-  new_canlin_node: //*[@data-shape='signal']
+  canlin:
+    # 节点功能栏中的信号子任务接口
+    canlin_node: //div[div[span[contains(text(),'信号子任务')] and @class='draggable-node']]
+    # 新增的空白信号子任务节点
+    new_canlin_node: //*[@data-shape='signal']
+    # 信号选择
+    signal_input: //input[@placeholder='请输入关键字后选择']
+    signal: //li[span[contains(text(),'${var_to_change}')]]
+    # 信号子任务编辑框的body
+    signal_scroll: //div[@class='el-dialog__body']
+    # 计算配置选择
+    cond_but: //label[span[contains(text(),'条件计算')]]/span[1]
+    cond_op: //div[contains(text(),'Y1')]/ancestor::tr/td[2]//input
+    cond_dss: //div[contains(text(),'Y1')]/ancestor::tr/td[3]//input
+    cond_dss_eq: //div[@class="v-modal"]/following::span[text()='等于']
+    cond_val: //div[contains(text(),'Y1')]/ancestor::tr/td[4]//input
+    cond_val_num_type: //div[@class="v-modal"]/following::span[text()='数值']
+    cond_val_num_val: //div[contains(text(),'Y1')]/ancestor::tr/td[4]//input[@placeholder='请输入']
+    but: //div[@class='el-dialog__body']//button[span[text()='确认']]
 
 
 

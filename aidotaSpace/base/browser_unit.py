@@ -91,12 +91,12 @@ class MyBrowser:
         mothod = self.get_mothod(mothod)
         sel = self.data.get_element(file, sel_path)
 
-        # 元素替换
+        # 是否需要元素替换
         if to_change != '':
             sel = sel.replace("${var_to_change}", to_change)
 
-        input_box = self.driver.find_element(mothod, sel)
-        input_box.click()
+        button = self.driver.find_element(mothod, sel)
+        button.click()
         time.sleep(1)
 
     def drag(self, mothod, file, sel_path, right, down):
@@ -137,3 +137,26 @@ class MyBrowser:
         # 执行双击操作
         action = ActionChains(self.driver)
         action.double_click(element).perform()
+
+    def scroll(self, type, mothod, file, sel_path):
+        '''
+        滚动到元素所在位置
+        :param type: 滚动方式
+        :param mothod: 元素定位方式
+        :param file: 元素路径所在文件标识
+        :param sel_path: 元素路径在文件中存储的位置
+        :return:
+        '''
+        mothod = self.get_mothod(mothod)
+        sel = self.data.get_element(file, sel_path)
+        ele = self.driver.find_element(mothod, sel)
+
+        match type:
+            case "ele":
+                # 滚动到元素所在位置
+                self.driver.execute_script("arguments[0].scrollIntoView();", ele)
+            case "scroll":
+                # 弹框滚动条拉到最底部
+                self.driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", ele)
+
+        time.sleep(1)
