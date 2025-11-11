@@ -42,9 +42,9 @@ canvas:
   # 信号子任务
   canlin:
     # 节点功能栏中的信号子任务接口
-    canlin_node: //div[div[span[contains(text(),'信号子任务')] and @class='draggable-node']]
+    new_canlin_node: //div[div[span[contains(text(),'信号子任务')] and @class='draggable-node']]
     # 新增的空白信号子任务节点
-    new_canlin_node: //*[@data-shape='signal']
+    canlin_node: //*[@data-shape='signal']
     # 信号选择
     signal_input: //input[@placeholder='请输入关键字后选择']
     signal: //li[span[contains(text(),'${var_to_change}')]]
@@ -58,13 +58,42 @@ canvas:
     cond_val: //div[contains(text(),'Y1')]/ancestor::tr/td[4]//input
     cond_val_num_type: //div[@class="v-modal"]/following::span[text()='数值']
     cond_val_num_val: //div[contains(text(),'Y1')]/ancestor::tr/td[4]//input[@placeholder='请输入']
+    # 确认按钮
     but: //div[@class='el-dialog__body']//button[span[text()='确认']]
 
 
+  # 判断子任务
+  judge:
+    # 节点功能栏中的判断子任务接口
+    new_judge_node: //div[span[contains(text(),'判断')] and @class='draggable-node']
+    # 新增的空白判断子任务节点
+    judge_node: //*[@data-shape='judge']
+    # 判断类型选择
+    resultType: //div[@class='el-dialog__body']//input[@placeholder="请选择"]
+    resultType_y_n: //li[span[text()='是非判断']]
+    # 确认按钮
+    but: //div[@class='el-dialog__body']//button[span[text()='确认']]
 
-  decision_node: //div[span[contains(text(),'判断')] and @class='draggable-node']
-  conclusion_node: //div[span[contains(text(),'小结')] and @class='draggable-node']
+  # 小结子任务
+  summary:
+    # 节点功能栏中的小结子任务接口
+    new_summary_node: //div[span[contains(text(),'小结')] and @class='draggable-node']
+    # 新增的空白小结子任务节点
+    summary_node: //*[@data-shape='summary']
+    # 小结设置项
+    name: //div[label[contains(text(),'小结任务名称')]]//input
+    attribute: //div[label[contains(text(),'小结属性')]]//input
+    attribute_client: //li[span[text()='客户问题']]
+    priority: //div[label[contains(text(),'优先级')]]//input
+    prion_first: //li[span[text()='第一优先级']]
+    reason: //div[label[contains(text(),'根本原因')]]//textarea
+    content: //div[label[contains(text(),'处理方案')]]//textarea
+    # 确认按钮
+    but: //div[@class='el-dialog__body']//button[span[text()='确认']]
 
+  #工具按钮
+  tools:
+    format: //i[@class='el-icon-s-open tool-btn']
 # 编辑场景
 edit_scene:
   edit: //tr[@class='el-table__row'][1]/td[@class='el-table_1_column_11 is-center  el-table__cell']//div/button[span[text()='编辑']]
