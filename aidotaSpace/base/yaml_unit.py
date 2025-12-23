@@ -10,7 +10,7 @@ class MyYaml:
     def get_element(self, fun, path):
         '''
         基于不同功能，提取不同文件中的数据
-        :param fun: 页面功能
+        :param fun: 功能类型
         :param path: 参数在文件中的位置
         :return:
         '''

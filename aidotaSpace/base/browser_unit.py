@@ -99,9 +99,9 @@ class MyBrowser:
         button.click()
         time.sleep(1)
 
-    def drag(self, mothod, file, sel_path, right, down):
+    def drag_to_coord(self, mothod, file, sel_path, right, down):
         '''
-        拖动子任务节点
+        拖动子任务节点到指定坐标
         :param mothod: 元素定位方式
         :param file: 元素路径所在文件标识
         :param sel_path: 元素路径在文件中存储的位置
@@ -119,6 +119,22 @@ class MyBrowser:
         action.click_and_hold(element_to_be_dragged).perform()
         # 将元素拖动到指定为止，向右+向下移动
         action.move_by_offset(right, down)
+        # 释放鼠标， 完成拖动
+        action.release().perform()
+
+    def drag_to_ele(self, mothod, file, in_path, out_path):
+        mothod = self.get_mothod(mothod)
+        in_sel = self.data.get_element(file, in_path)
+        in_ele = self.driver.find_element(mothod, in_sel)
+        out_sel = self.data.get_element(file, out_path)
+        out_ele = self.driver.find_element(mothod, out_sel)
+
+        # 创建拖动模块
+        action = ActionChains(self.driver)
+        # 鼠标按下不松开，并执行动作
+        action.click_and_hold(in_ele).perform()
+        # 将元素拖动到指定为止，向右+向下移动
+        action.move_to_element(out_ele)
         # 释放鼠标， 完成拖动
         action.release().perform()
 

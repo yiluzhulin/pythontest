@@ -44,7 +44,7 @@ canvas:
     # 节点功能栏中的信号子任务接口
     new_canlin_node: //div[div[span[contains(text(),'信号子任务')] and @class='draggable-node']]
     # 新增的空白信号子任务节点
-    canlin_node: //*[@data-shape='signal']
+    canlin_node: //*[@data-shape='signal'][last()]
     # 信号选择
     signal_input: //input[@placeholder='请输入关键字后选择']
     signal: //li[span[contains(text(),'${var_to_change}')]]
@@ -61,25 +61,33 @@ canvas:
     # 确认按钮
     but: //div[@class='el-dialog__body']//button[span[text()='确认']]
 
+    # 引入/出点
+    out: //*[@data-shape='signal']/*[@class='x6-port x6-port-out']
+
 
   # 判断子任务
   judge:
     # 节点功能栏中的判断子任务接口
     new_judge_node: //div[span[contains(text(),'判断')] and @class='draggable-node']
     # 新增的空白判断子任务节点
-    judge_node: //*[@data-shape='judge']
+    judge_node: //*[@data-shape='judge'][last()]
     # 判断类型选择
     resultType: //div[@class='el-dialog__body']//input[@placeholder="请选择"]
     resultType_y_n: //li[span[text()='是非判断']]
     # 确认按钮
     but: //div[@class='el-dialog__body']//button[span[text()='确认']]
 
+    # 引入/出点
+    in: //*[@data-shape='judge']/*[@class='x6-port x6-port-in']
+    outY: //*[@data-shape='judge']/*[@class='x6-port x6-port-outY']
+    outN: //*[@data-shape='judge']/*[@class='x6-port x6-port-outN']
+
   # 小结子任务
   summary:
     # 节点功能栏中的小结子任务接口
     new_summary_node: //div[span[contains(text(),'小结')] and @class='draggable-node']
     # 新增的空白小结子任务节点
-    summary_node: //*[@data-shape='summary']
+    summary_node: //*[@data-shape='summary'][last()]
     # 小结设置项
     name: //div[label[contains(text(),'小结任务名称')]]//input
     attribute: //div[label[contains(text(),'小结属性')]]//input
@@ -91,12 +99,20 @@ canvas:
     # 确认按钮
     but: //div[@class='el-dialog__body']//button[span[text()='确认']]
 
+    # 引入/出点
+    in1: //*[@data-shape='summary'][1]/*[@class='x6-port x6-port-in']
+    in2: //*[@data-shape='summary'][2]/*[@class='x6-port x6-port-in']
+
   #工具按钮
   tools:
-    format: //i[@class='el-icon-s-open tool-btn']
+    format: //button[i[@class='el-icon-s-open tool-btn']]
+    logicValidate: //button[span[text()='逻辑验证']]
+    createFinish: //button[span[text()='创建完成']]
+    finishText: //textarea[@placeholder='请输入本次修改点！']
+    finishButton: //span[text()='修改内容']/ancestor::div[@role='dialog']/div[3]//button[2]
 # 编辑场景
 edit_scene:
-  edit: //tr[@class='el-table__row'][1]/td[@class='el-table_1_column_11 is-center  el-table__cell']//div/button[span[text()='编辑']]
+  edit: //div[@class='el-table__fixed-body-wrapper']//td[11]//button[2]
   base: //div[contains(text(),'基本信息')]
   canvas: //div[contains(text(),'场景逻辑')]
 
