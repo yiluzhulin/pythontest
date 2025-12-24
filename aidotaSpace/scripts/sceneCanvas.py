@@ -149,9 +149,9 @@ class SceneCanvas:
             self.add_scene_canvas_summary("小结2")
 
             # 连接线路
-            self.edit_scene_canvas_line("canvas.canlin.out","canvas.judge.in")
-            self.edit_scene_canvas_line("canvas.judge.outY","canvas.summary.in1")
-            self.edit_scene_canvas_line("canvas.judge.outN","canvas.summary.in2")
+            self.edit_scene_canvas_line("canvas.canlin.out", "canvas.judge.in")
+            self.edit_scene_canvas_line("canvas.judge.outY", "canvas.summary.in1")
+            self.edit_scene_canvas_line("canvas.judge.outN", "canvas.summary.in2")
 
             # 格式化画布
             self.scene_canvas_format()
@@ -175,6 +175,10 @@ class SceneCanvas:
         '''
         self.browser.button('xpath', self.fun_flag, "edit_scene.edit")
         self.browser.button('xpath', self.fun_flag, "edit_scene.canvas")
+
+        # 修改信号子任务
+        self.edit_scene_canvas_canlin("ABSA", "ABSF")
+        time.sleep(5)
 
         # 格式化画布
         self.scene_canvas_format()
@@ -210,6 +214,36 @@ class SceneCanvas:
         '''
         self.browser.button('xpath', self.fun_flag, "canvas.tools.format")
 
+    def edit_scene_canvas_canlin(self, old_signal, new_signal):
+        '''
+        编辑场景的逻辑画布-修改信号子任务
+        :param old_signal: 原信号名称
+        :param new_signal: 新信号名称
+        :return:
+        '''
+        # 双击打开已存在的信号子任务
+        self.browser.double_click('xpath', self.fun_flag, "canvas.canlin.exist_canlin_node", old_signal)
+        time.sleep(1)
+
+        # 信号任务名称更新
+        self.browser.clear('xpath', self.fun_flag, "canvas.canlin.title")
+        self.browser.input('xpath', self.fun_flag, "canvas.canlin.title", new_signal)
+
+        # 信号选择
+        self.browser.input('xpath', self.fun_flag, "canvas.canlin.signal_input", new_signal)
+        self.browser.button('xpath', self.fun_flag, "canvas.canlin.signal", new_signal)
+
+        # 锚点更新
+        self.browser.scroll('ele', 'xpath', self.fun_flag, "canvas.canlin.summary")
+        self.browser.clear('xpath', self.fun_flag, "canvas.canlin.summary")
+        self.browser.input('xpath', self.fun_flag, "canvas.canlin.summary", '@')
+        self.browser.input('xpath', self.fun_flag, "canvas.canlin.summary_signal", new_signal)
+        self.browser.button('xpath', self.fun_flag, "canvas.canlin.summary_signal_sel", new_signal)
+
+        # 点击确认
+        self.browser.scroll('ele', 'xpath', self.fun_flag, "canvas.canlin.but")
+        self.browser.button('xpath', self.fun_flag, "canvas.canlin.but")
+
     def add_scene_canvas_canlin(self, signal):
         '''
         编辑场景的逻辑画布-添加信号子任务
@@ -219,10 +253,13 @@ class SceneCanvas:
         # 拖动信号子任务到画布
         self.browser.drag_to_coord('xpath', self.fun_flag, "canvas.canlin.new_canlin_node", 0, 100)
         self.browser.double_click('xpath', self.fun_flag, "canvas.canlin.canlin_node")
+
         # 信号选择
         self.browser.input('xpath', self.fun_flag, "canvas.canlin.signal_input", signal)
         self.browser.button('xpath', self.fun_flag, "canvas.canlin.signal", signal)
+
         # 计算配置
+        # 勾选条件计算
         self.browser.scroll('ele', 'xpath', self.fun_flag, "canvas.canlin.cond_but")
         self.browser.button('xpath', self.fun_flag, "canvas.canlin.cond_but")
         # 设置运算表达式
@@ -234,6 +271,29 @@ class SceneCanvas:
         self.browser.button('xpath', self.fun_flag, "canvas.canlin.cond_val")
         self.browser.button('xpath', self.fun_flag, "canvas.canlin.cond_val_num_type")
         self.browser.input('xpath', self.fun_flag, "canvas.canlin.cond_val_num_val", 1)
+
+        # 锚点配置
+        # 开启锚点
+        self.browser.scroll('ele', 'xpath', self.fun_flag, "canvas.canlin.ancher")
+        self.browser.button('xpath', self.fun_flag, "canvas.canlin.ancher")
+        # 设置源
+        self.browser.scroll('ele', 'xpath', self.fun_flag, "canvas.canlin.ancher_resource_type")
+        self.browser.button('xpath', self.fun_flag, "canvas.canlin.ancher_resource_type")
+        self.browser.button('xpath', self.fun_flag, "canvas.canlin.ancher_resource_type_sel")
+        self.browser.button('xpath', self.fun_flag, "canvas.canlin.ancher_resource_value")
+        self.browser.button('xpath', self.fun_flag, "canvas.canlin.ancher_resource_value_sel")
+        # 设置判断类型
+        self.browser.button('xpath', self.fun_flag, "canvas.canlin.ancher_dss")
+        self.browser.button('xpath', self.fun_flag, "canvas.canlin.ancher_dss_eq")
+        # 设置值
+        self.browser.button('xpath', self.fun_flag, "canvas.canlin.ancher_value_type")
+        self.browser.button('xpath', self.fun_flag, "canvas.canlin.ancher_value_type_sel")
+        self.browser.input('xpath', self.fun_flag, "canvas.canlin.ancher_value_value", 1)
+        # 设置锚点小结
+        self.browser.input('xpath', self.fun_flag, "canvas.canlin.summary", '@')
+        self.browser.input('xpath', self.fun_flag, "canvas.canlin.summary_signal", signal)
+        self.browser.button('xpath', self.fun_flag, "canvas.canlin.summary_signal_sel", signal)
+
         # 点击确认
         self.browser.scroll('ele', 'xpath', self.fun_flag, "canvas.canlin.but")
         self.browser.button('xpath', self.fun_flag, "canvas.canlin.but")

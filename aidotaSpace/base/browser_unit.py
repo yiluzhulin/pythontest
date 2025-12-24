@@ -138,9 +138,31 @@ class MyBrowser:
         # 释放鼠标， 完成拖动
         action.release().perform()
 
-    def double_click(self, mothod, file, sel_path):
+    def double_click(self, mothod, file, sel_path, to_change=''):
         '''
         元素执行双击操作
+        :param mothod: 元素定位方式
+        :param file: 元素路径所在文件标识
+        :param sel_path: 元素路径在文件中存储的位置
+        :param 元素路径中需要替换的变量目标值
+        :return:
+        '''
+        mothod = self.get_mothod(mothod)
+        sel = self.data.get_element(file, sel_path)
+
+        # 是否需要元素替换
+        if to_change != '':
+            sel = sel.replace("${var_to_change}", to_change)
+
+        element = self.driver.find_element(mothod, sel)
+
+        # 执行双击操作
+        action = ActionChains(self.driver)
+        action.double_click(element).perform()
+
+    def clear(self, mothod, file, sel_path):
+        '''
+        清空元素文本框的内容
         :param mothod: 元素定位方式
         :param file: 元素路径所在文件标识
         :param sel_path: 元素路径在文件中存储的位置
@@ -149,10 +171,7 @@ class MyBrowser:
         mothod = self.get_mothod(mothod)
         sel = self.data.get_element(file, sel_path)
         element = self.driver.find_element(mothod, sel)
-
-        # 执行双击操作
-        action = ActionChains(self.driver)
-        action.double_click(element).perform()
+        element.clear()
 
     def scroll(self, type, mothod, file, sel_path):
         '''

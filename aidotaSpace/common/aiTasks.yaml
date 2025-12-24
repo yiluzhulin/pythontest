@@ -1,3 +1,9 @@
 # 元素定位
 # 进入AI诊断人呢无界面
-tasks: //div[contains(text(),'场景组&场景管理')]
+entrance: //div[span[text()='AI诊断管理']]
+tasks: //div[contains(text(),'AI诊断任务')]
+
+# 添加任务
+addTask:
+  entrance: //button[span[text()='创建任务']]
+  vin: //div[@class='main-form-content']//div[label[text()='VIN']]//input

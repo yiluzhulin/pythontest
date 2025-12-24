@@ -45,6 +45,11 @@ canvas:
     new_canlin_node: //div[div[span[contains(text(),'信号子任务')] and @class='draggable-node']]
     # 新增的空白信号子任务节点
     canlin_node: //*[@data-shape='signal'][last()]
+    exist_canlin_node: //div[span[text()='${var_to_change}']]
+
+    # 信号任务名称
+    title: //div[label[contains(text(),'信号任务名称')]]//input
+
     # 信号选择
     signal_input: //input[@placeholder='请输入关键字后选择']
     signal: //li[span[contains(text(),'${var_to_change}')]]
@@ -54,10 +59,28 @@ canvas:
     cond_but: //label[span[contains(text(),'条件计算')]]/span[1]
     cond_op: //div[contains(text(),'Y1')]/ancestor::tr/td[2]//input
     cond_dss: //div[contains(text(),'Y1')]/ancestor::tr/td[3]//input
-    cond_dss_eq: //div[@class="v-modal"]/following::span[text()='等于']
+    cond_dss_eq: //div[boolean(@x-placement)]//li[span[text()='等于']]
     cond_val: //div[contains(text(),'Y1')]/ancestor::tr/td[4]//input
-    cond_val_num_type: //div[@class="v-modal"]/following::span[text()='数值']
+    cond_val_num_type: //div[boolean(@x-placement)]//li[span[text()='数值']]
     cond_val_num_val: //div[contains(text(),'Y1')]/ancestor::tr/td[4]//input[@placeholder='请输入']
+
+    # 锚点配置
+    ancher: //div[@class='el-switch']
+    ancher_resource_type: //div[@class='el-table__fixed-body-wrapper']//td[1]//input
+    ancher_resource_type_sel: //div[boolean(@x-placement)]//li[span[text()='信号']]
+    ancher_resource_value: //div[@class='el-table__fixed-body-wrapper']//td[1]//div[not(boolean(@style))]/div/input
+    ancher_resource_value_sel: //div[boolean(@x-placement)]//li[span[text()='x1']]
+    ancher_dss: //div[@class='module-content'][3]//div[@class='el-table__body-wrapper is-scrolling-none']//td[2]//input
+    ancher_dss_eq: //div[boolean(@x-placement)]//li[span[text()='等于']]
+    ancher_value_type: //div[@class='module-content'][3]//div[@class='el-table__body-wrapper is-scrolling-none']//td[3]//input[@placeholder='请选择']
+    ancher_value_type_sel: //div[boolean(@x-placement)]//li[span[text()='通用']]
+    ancher_value_value: //div[@class='module-content'][3]//div[@class='el-table__body-wrapper is-scrolling-none']//td[3]//input[@placeholder='请输入']
+    summary: //textarea[@placeholder='输入@可提及信号信息']
+#    summary_signal: //div[@class='mention-input-container']/div[2]
+    summary_signal: //div[@class='mention-input-container']/div[2]//input
+#    summary_signal_sel: //div[boolean(@x-placement)]//li[1]
+    summary_signal_sel: //div[boolean(@x-placement)]//li[span[contains(text(),'${var_to_change}')]]
+
     # 确认按钮
     but: //div[@class='el-dialog__body']//button[span[text()='确认']]
 

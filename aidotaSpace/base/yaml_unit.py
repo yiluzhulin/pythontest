@@ -23,6 +23,8 @@ class MyYaml:
                 file_path = os.path.join(file_path, "login.yaml")
             case "scene":
                 file_path = os.path.join(file_path, "sceneCanvas.yaml")
+            case "task":
+                file_path = os.path.join(file_path,"aiTasks.yaml")
 
         # 读取文件内容
         with open(file_path, 'r', encoding="utf-8") as file:
