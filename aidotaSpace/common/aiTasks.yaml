@@ -7,3 +7,36 @@ tasks: //div[contains(text(),'AI诊断任务')]
 addTask:
   entrance: //button[span[text()='创建任务']]
   vin: //div[@class='main-form-content']//div[label[text()='VIN']]//input
+  sceneGroupName: //div[label[contains(text(),'场景组名称')]]//input
+  sceneGroupName_sel: //div[boolean(@x-placement)]//li[span[contains(text(),'auto')]]
+  sceneName: //div[label[contains(text(),'场景名称')]]//input
+  sceneName_sel: //div[boolean(@x-placement)]//span[contains(text(),'auto')]/ancestor::li[1]
+  vinCheck_but: //div[@class='el-message-box']//button[span[contains(text(),'确定')]]
+  canlin_upload: //div[label[contains(text(),'canLin信号上传')]]//input
+  errorTime: //div[label[contains(text(),'故障时间')]]//input
+  startTime: //div[contains(text(),'向前')]//input
+  endTime: //div[contains(text(),'向后')]//input
+  submit_but: //div[@class='button-group']//button[span[text()='确定']]
+  sceneCheck_but: //div[@aria-label='提示']//button[span[contains(text(),'确定')]]
+
+search:
+  taskName: //div[label[contains(text(),'任务名称')]]//input
+  model: //div[label[contains(text(),'项目车型')]]//input
+  config: //div[label[contains(text(),'车型配置')]]//input
+  creater: //div[label[contains(text(),'任务创建人')]]//input
+  status: //div[label[contains(text(),'诊断状态')]]//input
+  status_jxz: //div[boolean(@x-placement)]//li[span[text()='进行中']]
+  status_zdwc: //div[boolean(@x-placement)]//li[span[text()='诊断完成']]
+  vin: //div[label[contains(text(),'VIN')]]//input
+  search_but: //button[span[text()='查询']]
+
+columnConfig:
+  entrance: //button[span[text()='配置列']]
+  column: //div[@aria-label='配置列元素']//tbody//tr[last()]//span
+  submit_but: //div[@aria-label='配置列元素']//button[span[contains(text(),'确认')]]
+
+detail:
+  entrance: //div[@class='el-table__fixed-body-wrapper']//tbody//tr[1]/td[last()]//button[1]
+  signalLineChart_search: //div[@class='canvasBrokenLine'][1]//button[span[text()='查询']]
+  signalLineChart_max: //div[@class='canvasBrokenLine'][1]//span[span[text()='数据线性']]/i
+  signalLineChart_ma_close: //body/div[@class='el-dialog__wrapper']/div[1]/div[1]/button

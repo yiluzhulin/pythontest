@@ -9,3 +9,8 @@ sit:
   pwd: Abuplw202510
   vehicleModels: ["EP33-M0-L7","P12L-M0-非销售"]
   vin: yf000000000000002
+  model: "TEST-YF测试"
+  config: "YF测试05"
+  errorTime: "2025-04-21 10:13:04"
+  startTime: 2
+  endTime: 2

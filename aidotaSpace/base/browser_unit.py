@@ -176,7 +176,7 @@ class MyBrowser:
     def scroll(self, type, mothod, file, sel_path):
         '''
         滚动到元素所在位置
-        :param type: 滚动方式
+        :param type: 滚动的目标
         :param mothod: 元素定位方式
         :param file: 元素路径所在文件标识
         :param sel_path: 元素路径在文件中存储的位置
